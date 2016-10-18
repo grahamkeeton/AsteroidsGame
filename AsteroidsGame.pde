@@ -7,9 +7,31 @@ public void draw()
 {
   //your code here
 }
-class SpaceShip //extends Floater  
+class SpaceShip extends Floater  
 {   
-    //your code here
+
+    SpaceShip(){
+      corners=4;
+      int[] nX={-2,-5,-5,6};
+      int[] nY={0,-8,8,0};
+      xCorners=nX;
+      yCorners=nY;
+      myColor=255;
+      myCenterX=0;
+      myCenterY=0;
+      myDirectionX=5;
+      myDirectionY= -5;
+      myPointDirection=180;
+
+      setX(nX);
+      setY(nY);
+
+
+
+
+
+    }
+
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -20,16 +42,16 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   protected double myCenterX, myCenterY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
   protected double myPointDirection; //holds current direction the ship is pointing in degrees    
-  abstract public void setX(int x);  
-  abstract public int getX();   
-  abstract public void setY(int y);   
-  abstract public int getY();   
-  abstract public void setDirectionX(double x);   
-  abstract public double getDirectionX();   
-  abstract public void setDirectionY(double y);   
-  abstract public double getDirectionY();   
-  abstract public void setPointDirection(int degrees);   
-  abstract public double getPointDirection(); 
+  public void setX(int x);  
+  public int getX();   
+  public void setY(int y);   
+  public int getY();   
+  public void setDirectionX(double x);   
+  public double getDirectionX();   
+  public void setDirectionY(double y);   
+  public double getDirectionY();   
+  public void setPointDirection(int degrees);   
+  public double getPointDirection(); 
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
