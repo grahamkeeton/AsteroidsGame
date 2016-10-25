@@ -1,16 +1,70 @@
 SpaceShip jew = new SpaceShip();
+
+
+int r;
+int g;
+int b;
+
+Star[] ayy = new Star[100];
+
 public void setup() 
 {
-  size(100,100);
-    jew.setX(50);
-  jew.setY(50);
+  size(700,700);
+  jew.setX(350);
+  jew.setY(350);
+
+  
+  for (int i=0;i<ayy.length;i++){
+    ayy[i] = new Star((int)(Math.random()*700),(int)(Math.random()*700));
+  }
+
 }
 public void draw() 
 {
-  jew.show;
-  jew.move;
+  background(0);
+  jew.show();
+  jew.move();
+
+  for (int i=0;i<ayy.length;i++){
+    ayy[i].asd();
+  }
+
+    if(r==0&&g==0&&b=0){
+    r=r+1;
+    }
+    if (r<0){
+      g=g+1;
+    }
+    if (r==255){
+      b=b+1;
+      r=r-2;
+    }
+
+
 
 }
+
+public void keyPressed(){
+    if (keyCode == LEFT ){
+        jew.rotate(-40);
+      }
+
+     if (keyCode == RIGHT ){
+        jew.rotate(40);
+      }
+
+    if (keyCode == UP ){
+        jew.accelerate(0.3);
+      }
+
+    if (keyCode == DOWN){
+      jew.setX((int)(Math.random()*700));
+      jew.setY((int)(Math.random()*700));
+      jew.setDirectionX(0);
+      jew.setDirectionY(0);
+    }
+  }
+
 class SpaceShip extends Floater  
 {   
 
@@ -18,6 +72,8 @@ class SpaceShip extends Floater
       corners=4;
       int[] xC={-5,3,-5,-2,-5};
       int[] yC={-5,0,5,0,-5};
+
+      myColor=255;
 
       xCorners=xC;
       yCorners=yC;
@@ -35,11 +91,26 @@ class SpaceShip extends Floater
 
       public void setPointDirection(int degrees){myPointDirection=degrees;}
       public double getPointDirection(){return myPointDirection;}
-
-
-  
-
 }
+
+class Star 
+{
+    private int myX;
+    private int myY;
+  
+  public Star(int x, int y){
+   myX=x;
+   myY=y;
+  }
+
+  public void asd(){
+    fill(r,g,b);
+    ellipse(myX,myY,5,5);
+  }
+}
+
+
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -115,5 +186,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     }   
     endShape(CLOSE);  
   }   
+
+
 } 
 
