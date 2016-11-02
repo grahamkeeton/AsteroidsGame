@@ -1,12 +1,11 @@
 SpaceShip jew = new SpaceShip();
 
-
 int r;
 int g;
 int b;
 
 Star[] ayy = new Star[150];
-gent[] bigger = new gent[10];
+Gent[] bigger = new Gent[10];
 
 public void setup() 
 {
@@ -20,7 +19,13 @@ public void setup()
   }
 
   for (int i=0;i<bigger.length;i++){
-    bigger[i] = new gent((int)(Math.random()*1000),(int)(Math.random()*1000));
+    
+    bigger[i] = new Gent();
+    bigger[i].setX((int)(Math.random()*1000));
+    bigger[i].setY((int)(Math.random()*1000));
+    bigger[i].setDirectionX((Math.random()*10)-5);
+    bigger[i].setDirectionY((Math.random()*10)-5); 
+
   }
 
 }
@@ -39,9 +44,9 @@ public void draw()
     b+=(int)(Math.random()*500)-255;
 
      for (int i=0;i<bigger.length;i++){
-    bigger[i].setX()
     bigger[i].move();
     bigger[i].show();
+    bigger[i].rotate(rosalina);
   }
 }
 
@@ -103,26 +108,52 @@ class Star
    myX=x;
    myY=y;
   }
-
+ 
   public void asd(){
     fill(r,g,b);
     ellipse(myX,myY,5,5);
   }
 }
 
-class Ass extends Floater
+class Gent extends Floater
 {
-    public Ass(){
+    private int rosalina = (int)((Math.random()*7)-3);
+
+
+    public Gent(){
      corners=5;
      int[] xC={-4,0,6,4,-2};
      int[] yC={0,4,0,-2,-4};
 
-     myColor(160,82,45);
+      for (int i=0;i<xC.length;i++){
+        xC[i]*=30;
+        yC[i]*=30;
+      }
 
+     myColor=color(160,82,45);
      xCorners=xC;
      yCorners=yC;
+      }
 
+     public void setX(int x) {myCenterX=x;}
+      public int getX(){return (int)(myCenterX);}
+      public void setY(int y) {myCenterY=y;}
+      public int getY(){return (int)(myCenterY);}
+
+      public void setDirectionX(double x){myDirectionX=x;}
+      public double getDirectionX(){return myDirectionX;}
+      public void setDirectionY(double y){myDirectionY=y;}
+      public double getDirectionY(){return myDirectionY;}
+
+      public void setPointDirection(int degrees){myPointDirection=degrees;}
+      public double getPointDirection(){return myPointDirection;}
+    
+    void move(){
+      rotate(rosalina);
+      super.move();
     }
+
+
 }
 
 
