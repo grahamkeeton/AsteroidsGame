@@ -55,7 +55,7 @@ public void keyPressed(){
         jew.rotate(-40);
       }
 
-     if (keyCode == rIGHT){
+     if (keyCode == RIGHT){
         jew.rotate(40);
       }
 
@@ -165,7 +165,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   protected int myColor;   
   protected double myCenterX, myCenterY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
-  protected double myPointDirection; //holds curent direction the ship is pointing in degrees    
+  protected double myPointDirection; //holds current direction the ship is pointing in degrees    
   abstract public void setX(int x);   
   abstract public int getX();   
   abstract public void setY(int y);   
@@ -180,7 +180,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
   {          
-    //convert the curent direction the floater is pointing to radians    
+    //convert the current direction the floater is pointing to radians    
     double dradians =myPointDirection*(Math.PI/180);     
     //change coordinates of direction of travel    
     myDirectionX += ((dAmount) * Math.cos(dradians));    
@@ -191,7 +191,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     //rotates the floater by a given number of degrees    
     myPointDirection+=nDegreesOfrotation;   
   }   
-  public void move ()   //move the floater in the curent direction of travel
+  public void move ()   //move the floater in the current direction of travel
   {      
     //change the x and y coordinates by myDirectionX and myDirectionY       
     myCenterX += myDirectionX;    
@@ -215,7 +215,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
       myCenterY = height;    
     }   
   }   
-  public void show ()  //Draws the floater at the curent position  
+  public void show ()  //Draws the floater at the current position  
   {             
     fill(myColor);   
     stroke(myColor);    
@@ -225,7 +225,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     beginShape();         
     for(int nI = 0; nI < corners; nI++)    
     {     
-      //rotate and translate the coordinates of the floater using curent direction 
+      //rotate and translate the coordinates of the floater using current direction 
       xrotatedTranslated = (int)((xCorners[nI]* Math.cos(dradians)) - (yCorners[nI] * Math.sin(dradians))+myCenterX);     
       yrotatedTranslated = (int)((xCorners[nI]* Math.sin(dradians)) + (yCorners[nI] * Math.cos(dradians))+myCenterY);      
       vertex(xrotatedTranslated,yrotatedTranslated);    
