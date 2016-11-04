@@ -46,20 +46,20 @@ public void draw()
      for (int i=0;i<bigger.length;i++){
     bigger[i].move();
     bigger[i].show();
-    bigger[i].rotate(rosalina);
+    //bigger[i].rotate();
   }
 }
 
 public void keyPressed(){
-    if (keyCode == LEFT ){
+     if (keyCode == LEFT ){
         jew.rotate(-40);
       }
 
-     if (keyCode == RIGHT){
+     if (keyCode == rIGHT){
         jew.rotate(40);
       }
 
-    if (keyCode == UP ){
+     if (keyCode == UP ){
         jew.accelerate(0.3);
       }
 
@@ -126,8 +126,8 @@ class Gent extends Floater
      int[] yC={0,4,0,-2,-4};
 
       for (int i=0;i<xC.length;i++){
-        xC[i]*=30;
-        yC[i]*=30;
+        xC[i]*=10;
+        yC[i]*=10;
       }
 
      myColor=color(160,82,45);
@@ -165,7 +165,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   protected int myColor;   
   protected double myCenterX, myCenterY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
-  protected double myPointDirection; //holds current direction the ship is pointing in degrees    
+  protected double myPointDirection; //holds curent direction the ship is pointing in degrees    
   abstract public void setX(int x);   
   abstract public int getX();   
   abstract public void setY(int y);   
@@ -180,18 +180,18 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
   {          
-    //convert the current direction the floater is pointing to radians    
-    double dRadians =myPointDirection*(Math.PI/180);     
+    //convert the curent direction the floater is pointing to radians    
+    double dradians =myPointDirection*(Math.PI/180);     
     //change coordinates of direction of travel    
-    myDirectionX += ((dAmount) * Math.cos(dRadians));    
-    myDirectionY += ((dAmount) * Math.sin(dRadians));       
+    myDirectionX += ((dAmount) * Math.cos(dradians));    
+    myDirectionY += ((dAmount) * Math.sin(dradians));       
   }   
-  public void rotate (int nDegreesOfRotation)   
+  public void rotate (int nDegreesOfrotation)   
   {     
     //rotates the floater by a given number of degrees    
-    myPointDirection+=nDegreesOfRotation;   
+    myPointDirection+=nDegreesOfrotation;   
   }   
-  public void move ()   //move the floater in the current direction of travel
+  public void move ()   //move the floater in the curent direction of travel
   {      
     //change the x and y coordinates by myDirectionX and myDirectionY       
     myCenterX += myDirectionX;    
@@ -215,20 +215,20 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
       myCenterY = height;    
     }   
   }   
-  public void show ()  //Draws the floater at the current position  
+  public void show ()  //Draws the floater at the curent position  
   {             
     fill(myColor);   
     stroke(myColor);    
     //convert degrees to radians for sin and cos         
-    double dRadians = myPointDirection*(Math.PI/180);                 
-    int xRotatedTranslated, yRotatedTranslated;    
+    double dradians = myPointDirection*(Math.PI/180);                 
+    int xrotatedTranslated, yrotatedTranslated;    
     beginShape();         
     for(int nI = 0; nI < corners; nI++)    
     {     
-      //rotate and translate the coordinates of the floater using current direction 
-      xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
-      yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
-      vertex(xRotatedTranslated,yRotatedTranslated);    
+      //rotate and translate the coordinates of the floater using curent direction 
+      xrotatedTranslated = (int)((xCorners[nI]* Math.cos(dradians)) - (yCorners[nI] * Math.sin(dradians))+myCenterX);     
+      yrotatedTranslated = (int)((xCorners[nI]* Math.sin(dradians)) + (yCorners[nI] * Math.cos(dradians))+myCenterY);      
+      vertex(xrotatedTranslated,yrotatedTranslated);    
     }   
     endShape(CLOSE);  
   }   
