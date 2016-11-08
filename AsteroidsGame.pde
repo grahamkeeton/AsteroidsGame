@@ -5,7 +5,8 @@ int g;
 int b;
 
 Star[] ayy = new Star[150];
-Gent[] bigger = new Gent[10];
+
+ArrayList <Roid> steroids = new ArrayList <Roid>();
 
 public void setup() 
 {
@@ -18,13 +19,14 @@ public void setup()
     ayy[i] = new Star((int)(Math.random()*1000),(int)(Math.random()*1000));
   }
 
-  for (int i=0;i<bigger.length;i++){
+  for (int i=0; i < 10; i++){
     
-    bigger[i] = new Gent();
-    bigger[i].setX((int)(Math.random()*1000));
-    bigger[i].setY((int)(Math.random()*1000));
-    bigger[i].setDirectionX((Math.random()*10)-5);
-    bigger[i].setDirectionY((Math.random()*10)-5); 
+    steroids.add(new Roid());
+    steroids.get(i).setX((int)(Math.random()*1000));
+    steroids.get(i).setY((int)(Math.random()*1000));
+    steroids.get(i).setDirectionX((Math.random()*20)-10);
+    steroids.get(i).setDirectionY((Math.random()*20)-10);
+
 
   }
 
@@ -43,11 +45,18 @@ public void draw()
     g+=(int)(Math.random()*500)-255;
     b+=(int)(Math.random()*500)-255;
 
-     for (int i=0;i<bigger.length;i++){
-    bigger[i].move();
-    bigger[i].show();
+     for (int i=0;i<10;i++){
+    steroids.get(i).move();
+    steroids.get(i).show();
+    //bbsteroids.get(i).rotate();
+    //bigger[i].show();
     //bigger[i].rotate();
   }
+
+  if (dist(jew.getX(), jew.myCenterY, steroids.myCenterX, steroids.myCenterY)<20){
+
+  }
+
 }
 
 public void keyPressed(){
@@ -115,12 +124,12 @@ class Star
   }
 }
 
-class Gent extends Floater
+class Roid extends Floater
 {
     private int rosalina = (int)((Math.random()*7)-3);
 
 
-    public Gent(){
+    public Roid(){
      corners=5;
      int[] xC={-4,0,6,4,-2};
      int[] yC={0,4,0,-2,-4};
@@ -135,7 +144,7 @@ class Gent extends Floater
      yCorners=yC;
       }
 
-     public void setX(int x) {myCenterX=x;}
+      public void setX(int x) {myCenterX=x;}
       public int getX(){return (int)(myCenterX);}
       public void setY(int y) {myCenterY=y;}
       public int getY(){return (int)(myCenterY);}
