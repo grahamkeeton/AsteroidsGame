@@ -45,17 +45,15 @@ public void draw()
     g+=(int)(Math.random()*500)-255;
     b+=(int)(Math.random()*500)-255;
 
-     for (int i=0;i<10;i++){
-    steroids.get(i).move();
-    steroids.get(i).show();
-    //bbsteroids.get(i).rotate();
-    //bigger[i].show();
-    //bigger[i].rotate();
+     for (int i=0;i<steroids.size();i++){
+       steroids.get(i).move();
+       steroids.get(i).show();
+
+       if (dist(jew.getX(), jew.getY(), steroids.get(i).getX(), steroids.get(i).getY())<20){
+          steroids.remove(i);
+      }   
   }
 
-  if (dist(jew.getX(), jew.myCenterY, steroids.myCenterX, steroids.myCenterY)<20){
-
-  }
 
 }
 
