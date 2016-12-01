@@ -1,5 +1,6 @@
 SpaceShip jew = new SpaceShip();
 
+boolean alive = true;
 int r;
 int g;
 int b;
@@ -7,6 +8,7 @@ int b;
 Star[] ayy = new Star[150];
 
 ArrayList <Roid> steroids = new ArrayList <Roid>();
+ArrayList <Bullet> maga = new ArrayList <Bullet>();
 
 public void setup() 
 {
@@ -33,9 +35,27 @@ public void setup()
 }
 public void draw() 
 {
+
+if (alive==true){
   background(0);
   jew.show();
   jew.move();
+
+
+for (int i=0;i<steroids.size();i++){
+       steroids.get(i).move();
+       steroids.get(i).show();
+     }
+}
+
+else if (alive==false){
+  background(255);
+  textSize(100);
+  fill(255,0,0);
+  text("u ded",200,200);
+
+}
+
 
   for (int i=0;i<ayy.length;i++){
     ayy[i].asd();
@@ -46,14 +66,29 @@ public void draw()
     b+=(int)(Math.random()*500)-255;
 
      for (int i=0;i<steroids.size();i++){
-       steroids.get(i).move();
-       steroids.get(i).show();
 
-       if (dist(jew.getX(), jew.getY(), steroids.get(i).getX(), steroids.get(i).getY())<20){
+       if (dist(jew.getX(), jew.getY(), steroids.get(i).getX(), steroids.get(i).getY())<50){
+          alive=false;
+        } 
+
+    for (int j=0;j<maga.size();j++){
+      
+      if (dist(maga.get(j).getX(), maga.get(j).getY(), steroids.get(i).getX(), steroids.get(i).getY())<50){
           steroids.remove(i);
-      }   
+          maga.remove(j);
+
+          break;
+      } 
+
+    }
   }
 
+
+  for (int i=0;i<maga.size();i++){
+    maga.get(i).show();
+    maga.get(i).move();
+
+  }
 
 }
 
@@ -76,7 +111,14 @@ public void keyPressed(){
       jew.setDirectionX(0);
       jew.setDirectionY(0);
     }
+
+    if (keyCode==32){
+      maga.add(new Bullet(jew));
+    }
+
   }
+
+
 
 class SpaceShip extends Floater  
 {   
@@ -124,7 +166,7 @@ class Star
 
 class Roid extends Floater
 {
-    private int rosalina = (int)((Math.random()*7)-3);
+    private int rosalina =(int)((Math.random()*7)-3);
 
 
     public Roid(){
@@ -154,25 +196,23 @@ class Roid extends Floater
 
       public void setPointDirection(int degrees){myPointDirection=degrees;}
       public double getPointDirection(){return myPointDirection;}
-    
+
+
     void move(){
       rotate(rosalina);
       super.move();
     }
-
-
 }
 
-
-abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
-{   
-  protected int corners;  //the number of corners, a triangular floater has 3   
-  protected int[] xCorners;   
-  protected int[] yCorners;   
-  protected int myColor;   
-  protected double myCenterX, myCenterY; //holds center coordinates   
-  protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
-  protected double myPointDirection; //holds current direction the ship is pointing in degrees    
+abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class
+{
+  protected int corners;  //the number of corners, a triangular floater has 3
+  protected int[] xCorners;
+  protected int[] yCorners;
+  protected int myColor;
+  protected double myCenterX, myCenterY; //holds center coordinates
+  protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel
+  protected double myPointDirection; //holds current direction the ship is pointing in degrees
   abstract public void setX(int x);   
   abstract public int getX();   
   abstract public void setY(int y);   
