@@ -1,9 +1,10 @@
 SpaceShip jew = new SpaceShip();
 
-boolean alive = true;
+int alive = 0;
 int r;
 int g;
 int b;
+int dindu = 0;
 
 Star[] ayy = new Star[150];
 
@@ -36,10 +37,11 @@ public void setup()
 public void draw() 
 {
 
-if (alive==true){
+if (alive==0){
   background(0);
   jew.show();
   jew.move();
+
 
 
 for (int i=0;i<steroids.size();i++){
@@ -48,12 +50,18 @@ for (int i=0;i<steroids.size();i++){
      }
 }
 
-else if (alive==false){
+else if (alive==1){
   background(255);
   textSize(100);
   fill(255,0,0);
   text("u ded",200,200);
 
+}
+
+else if(alive==2){
+  textSize(200);
+  background(255);
+  text("wiener",400,400);
 }
 
 
@@ -68,7 +76,7 @@ else if (alive==false){
      for (int i=0;i<steroids.size();i++){
 
        if (dist(jew.getX(), jew.getY(), steroids.get(i).getX(), steroids.get(i).getY())<50){
-          alive=false;
+          alive=1;
         } 
 
     for (int j=0;j<maga.size();j++){
@@ -76,6 +84,7 @@ else if (alive==false){
       if (dist(maga.get(j).getX(), maga.get(j).getY(), steroids.get(i).getX(), steroids.get(i).getY())<50){
           steroids.remove(i);
           maga.remove(j);
+          dindu++;
 
           break;
       } 
@@ -83,6 +92,9 @@ else if (alive==false){
     }
   }
 
+if (dindu==10){
+  alive=2;
+}
 
   for (int i=0;i<maga.size();i++){
     maga.get(i).show();
